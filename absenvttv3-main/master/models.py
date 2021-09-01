@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+
 # Create your models here.
 
 class MasterKelas(models.Model):
@@ -45,7 +46,7 @@ class MasterSiswa(models.Model):
 
 class Absensi(models.Model):
     id_absensi              = models.ForeignKey(MasterSiswa, on_delete=models.CASCADE)
-    daily                   = models.DateField(auto_now_add=True)
+    daily                   = models.DateField()
     status                  = models.BooleanField()
     checkin                 = models.DateTimeField(auto_now_add=True)
     checkout                = models.DateTimeField(null=True, blank=True, default=None)

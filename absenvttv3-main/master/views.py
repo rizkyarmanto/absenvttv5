@@ -3,10 +3,13 @@ from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from rest_framework.decorators import api_view
+from rest_framework import viewsets
 
 from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
 
 # Create your views here.
 from .models import *
@@ -56,4 +59,6 @@ def loginPage(request):
 def logoutUser(request):
 	logout(request)
 	return redirect('login')
+
+
 

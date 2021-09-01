@@ -1,3 +1,4 @@
+from rest_framework.response import Response
 from master.models import *
 from rest_framework import viewsets
 from master.serializers import *
@@ -28,3 +29,14 @@ class AbsensiViewSet(viewsets.ModelViewSet):
     serializer_class = AbsensiSerializer
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        absensi = Absensi.objects.all()
+        return absensi
+
+    def retrieve(self, request, *args, **kwargs):
+        params = kwargs
+        print(params['pk'])
+        date = Absensi.objects.filter(daily=params['pk'])
+        serializer = AbsensiSerializer(date, many=True)
+        return Response (serializer.data)
